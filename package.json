@@ -9,7 +9,7 @@
     "clean": "rm -rf dist",
     "deploy": "ft-graphics-deploy",
     "test": "echo \" No tests specified :( \"",
-    "start:dotenv": "node --require dotenv/config index.js"
+    "build:dotenv": "node --require dotenv/config index.js"
   },
   "author": "",
   "license": "ISC",

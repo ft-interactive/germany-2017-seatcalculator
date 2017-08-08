@@ -1,4 +1,3 @@
-Available here on S3:  https://s3-eu-west-1.amazonaws.com/ft-ig-content-prod/v2/ft-interactive/germany-2017-seatcalculator/master/index.html
 
 A simple example of how to make and publish data-generated static graphics via the same pattern as starter kit.
 

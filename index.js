@@ -1,6 +1,7 @@
 // GET and transform the data
 const fs = require('fs');
 const d3 = require('d3');
+const chartFrame = require('g-chartframe');
 
 const cleanVotes = require('./lib/data/calculate-total').cleanVotes;
 const calculateCoalitionNumbers = require('./lib/data/calculate-coalition.js').calculateCoalitionNumbers;
@@ -10,6 +11,12 @@ const getAverage = require('./lib/data/average-data.js').averageData;
 const makeStackedChart = require('./lib/coalition/index.js').makeStackedChart;
 const makeBarChart = require('./lib/total/index.js').makeBarChart;
 
+const outputDir = '/dist';
+const s3Dir = 'https://s3-eu-west-1.amazonaws.com/ft-ig-content-prod/v2/ft-interactive/germany-2017-seatcalculator/master/';
+const timeStamp = d3.timeFormat('%d-%m-%Y')(new Date());
+const timeUpdated = d3.timeFormat('%B %e %Y')(new Date());
+
+// Configuration for stacked coalition chart
 const medChartConfigStacked = {
 	frameMaker: chartFrame.webFrameM,
 	width: 700,
@@ -28,43 +35,61 @@ const smallChartConfigStacked = {
 	sourceSizing: {sourcePos: 25},
 };
 
+// Configuration for total seats bar chart
+const medChartConfigBar = {
+	frameMaker: chartFrame.webFrameM,
+	title: 'Predicted share of Bundestag seats',
+	subtitle: 'Based on latest poll predictions for the September 2017 election',
+	width: 700,
+	height: 550,
+	chartPadding: {bottom: 30, top: 30},
+	chartMargin: {top:100, left: 20, right: 30, bottom: 30},
+	sourceSizing: {sourcePos: 20},
+	barWidth: 100
+};
+
+const smallChartConfigBar = {
+	frameMaker: chartFrame.webFrameS,
+	title: 'Predicted share of Bundestag |' + 'seats',
+	subtitle: 'Based on latest poll predictions for the |' + 'September 2017 election',
+	width: 300,
+	height: 500,
+	chartPadding: {bottom: 0, top: 0},
+	chartMargin: {bottom: -30, top: 130, left: 20, right: 28},
+	sourceSizing: {sourcePos: 25},
+	barWidth: 40
+};
+
 // DATA CHOICES
 const dataUrl = process.env.DATA_URL;
 const coalitionCombinations = [
   ['CDU/CSU', 'SPD'],
-  ['SPD', 'LINKE', 'GRÜNE'],
-  ['SPD', 'FDP', 'GRÜNE'],
+  ['CDU/CSU', 'FDP', 'GRÜNE'],
   ['CDU/CSU', 'FDP'],
   ['CDU/CSU', 'GRÜNE'],
-  ['CDU/CSU', 'FDP', 'GRÜNE']
+  ['SPD', 'LINKE', 'GRÜNE'],
+  ['SPD', 'FDP', 'GRÜNE']
 ];
 
-const outputDir = '/dist';
-const s3Dir = 'https://s3-eu-west-1.amazonaws.com/ft-ig-content-prod/v2/ft-interactive/germany-2017-seatcalculator/master/';
-const timeStamp = d3.timeFormat('%d-%m-%Y')(new Date());
-const timeUpdated = d3.timeFormat('%B %e %Y')(new Date());
-
-
 loadData(dataUrl).then(data => {
-  try {
-    const sortedData = getSortedData(data);
-    const averageDataLatest = getAverage(sortedData)[0];
-    const cleanVoteNumbers = cleanVotes(averageDataLatest);
-    const coalitionNumbers = calculateCoalition(cleanVoteNumbers);
-  } catch(err){ `Error with data parsing:`, err }
+  const sortedData = getSortedData(data);
+  const averageDataLatest = getAverage(sortedData)[0];
+  const cleanVoteNumbers = cleanVotes(averageDataLatest);
+  const coalitionNumbers = calculateCoalition(cleanVoteNumbers);
 
-  const totalChartM = makeBarChart(cleanVoteNumbers);
-  const totalChartS = makeBarChart(cleanVoteNumbers);
+  const totalChartM = makeBarChart(medChartConfigBar, cleanVoteNumbers);
+  const totalChartS = makeBarChart(smallChartConfigBar, cleanVoteNumbers);
 
-  const coalitionsChartM = makeStackedChart(coalitionNumbers, coalitionCombinations, medChartConfigStacked );
-  const coalitionsChartS = makeStackedChart(coalitionNumbers, coalitionCombinations, smallChartConfigStacked );
+  const coalitionsChartM = makeStackedChart(medChartConfigStacked, coalitionNumbers, coalitionCombinations);
+  const coalitionsChartS = makeStackedChart(smallChartConfigStacked, coalitionNumbers, coalitionCombinations);
 
-  writeChartToFile(totalChart, "seat-barchart");
-  writeChartToFile(coalitionsChart, "coalition-stackedchart");
+  writeChartToFile(totalChartM, "seat-barchart-medium");
+  writeChartToFile(totalChartS, "seat-barchart-small");
+  writeChartToFile(coalitionsChartM, "coalition-stackedchart-medium");
+  writeChartToFile(coalitionsChartS, "coalition-stackedchart-small");
   writeHoldingPage(outputDir);
 })
 .catch(err => console.error(`MAKING THE CHART FAILED ${err}`, err));
-
 
 // load and format data
 async function loadData(url){

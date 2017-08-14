@@ -48,6 +48,9 @@
           text.chart-note {
             font-size: 16px;
           }
+          text.chart-copyright{
+            display: none;
+          }
 
           /* LABELS */
           g.seat-chart text.bar-label{

@@ -19,6 +19,8 @@ const timeUpdated = d3.timeFormat('%B %e %Y')(new Date());
 // Configuration for stacked coalition chart
 const medChartConfigStacked = {
 	frameMaker: chartFrame.webFrameM,
+	title: 'Potential coalition combinations',
+	subtitle: `Estimated % share of 2017 Bundestag seats based on latest polls`,
 	width: 700,
 	height: 550,
 	chartPadding: {bottom: 30, top: 30},
@@ -28,11 +30,13 @@ const medChartConfigStacked = {
 
 const smallChartConfigStacked = {
 	frameMaker: chartFrame.webFrameS,
+	title: 'Potential coalitions',
+	subtitle: 'Estimated % share of 2017 Bundestag seats',
 	width: 300,
-	height: 500,
+	height: 550,
 	chartPadding: {bottom: 0, top: 0},
-	chartMargin: {bottom: -30, top: 180, left: 20, right: 28},
-	sourceSizing: {sourcePos: 25},
+	chartMargin: {bottom: -75, top: 100, left: 10, right: 10},
+	sourceSizing: {sourcePos: 0},
 };
 
 // Configuration for total seats bar chart

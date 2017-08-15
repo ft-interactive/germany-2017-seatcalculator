@@ -50,7 +50,7 @@ const medChartConfigBar = {
 	height: 550,
 	chartPadding: {bottom: 30, top: 30},
 	chartMargin: {top:100, left: 20, right: 30, bottom: 30},
-	sourceSizing: {sourcePos: 20},
+	sourceY: 510,
 	barWidth: 100
 };
 
@@ -63,7 +63,8 @@ const smallChartConfigBar = {
 	chartPadding: {bottom: 0, top: 0},
 	chartMargin: {bottom: -30, top: 130, left: 10, right: 10},
 	sourceSizing: {sourcePos: 25},
-	barWidth: 40
+	barWidth: 40,
+	sourceY: 475,
 };
 
 // DATA CHOICES

@@ -25,7 +25,7 @@ const medChartConfigStacked = {
 	height: 520,
 	chartPadding: {bottom: 0, top: 0}, //no effect
 	chartMargin: {top:110, left: 20, right: 30, bottom: 30},
-	sourceY: 490,
+	sourceY: 475,
 	sizeVersion: "medium",
 };
 

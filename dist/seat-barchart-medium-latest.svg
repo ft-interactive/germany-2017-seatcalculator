@@ -26,6 +26,7 @@
           svg text {
             font-family: MetricWeb, Metric, sans-serif;
             -webkit-font-smoothing: antialiased;
+            font-size: 14px;
           }
 
           /* TEXT */

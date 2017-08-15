@@ -21,11 +21,13 @@
             -moz-font-feature-settings: "tnum" !important;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-size: 14px;
           }
           svg text {
             font-family: MetricWeb, Metric, sans-serif;
             -webkit-font-smoothing: antialiased;
           }
+
           /* TEXT */
           .axes text,
           text.chart-source tspan{
@@ -37,7 +39,7 @@
           }
           text.chart-title tspan{
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 400;
           }
           svg text.chart-subtitle tspan{
             font-size: 18px !important;
@@ -52,6 +54,9 @@
           }
           text.chart-copyright{
             display: none;
+          }
+          .ft-webgraphic-s {
+
           }
 
           /* LABELS */

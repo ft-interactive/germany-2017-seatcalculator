@@ -24,7 +24,7 @@ const medChartConfigStacked = {
 	width: 700,
 	height: 520,
 	chartPadding: {bottom: 0, top: 0}, //no effect
-	chartMargin: {top:110, left: 20, right: 30, bottom: 30},
+	chartMargin: {top:105, left: 20, right: 30, bottom: 30},
 	sourceY: 475,
 	sizeVersion: "medium",
 };
@@ -36,7 +36,7 @@ const smallChartConfigStacked = {
 	width: 300,
 	height: 520,
 	chartPadding: {bottom: 0, top: 0},
-	chartMargin: {bottom: -75, top: 120, left: 10, right: 10},
+	chartMargin: {bottom: -75, top: 115, left: 10, right: 10},
 	sourceY: 490,
 	sizeVersion: "small",
 };

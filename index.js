@@ -22,10 +22,11 @@ const medChartConfigStacked = {
 	title: 'Potential coalition combinations',
 	subtitle: `Estimated % share of 2017 Bundestag seats based on latest polls`,
 	width: 700,
-	height: 550,
-	chartPadding: {bottom: 30, top: 30},
-	chartMargin: {top:125, left: 20, right: 30, bottom: 30},
-	sourceSizing: {sourcePos: 20},
+	height: 520,
+	chartPadding: {bottom: 0, top: 0}, //no effect
+	chartMargin: {top:110, left: 20, right: 30, bottom: 30},
+	sourceY: 490,
+	sizeVersion: "medium",
 };
 
 const smallChartConfigStacked = {
@@ -33,10 +34,11 @@ const smallChartConfigStacked = {
 	title: 'Potential coalitions',
 	subtitle: 'Estimated % share of 2017 Bundestag seats',
 	width: 300,
-	height: 550,
+	height: 520,
 	chartPadding: {bottom: 0, top: 0},
-	chartMargin: {bottom: -75, top: 100, left: 10, right: 10},
-	sourceSizing: {sourcePos: 0},
+	chartMargin: {bottom: -75, top: 120, left: 10, right: 10},
+	sourceY: 490,
+	sizeVersion: "small",
 };
 
 // Configuration for total seats bar chart
@@ -59,7 +61,7 @@ const smallChartConfigBar = {
 	width: 300,
 	height: 500,
 	chartPadding: {bottom: 0, top: 0},
-	chartMargin: {bottom: -30, top: 130, left: 20, right: 28},
+	chartMargin: {bottom: -30, top: 130, left: 10, right: 10},
 	sourceSizing: {sourcePos: 25},
 	barWidth: 40
 };

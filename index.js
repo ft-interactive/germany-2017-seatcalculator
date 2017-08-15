@@ -62,9 +62,8 @@ const smallChartConfigBar = {
 	height: 500,
 	chartPadding: {bottom: 0, top: 0},
 	chartMargin: {bottom: -30, top: 130, left: 10, right: 10},
-	sourceSizing: {sourcePos: 25},
 	barWidth: 40,
-	sourceY: 475,
+	sourceY: 465,
 };
 
 // DATA CHOICES

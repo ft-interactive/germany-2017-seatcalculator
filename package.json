@@ -7,17 +7,17 @@
     "prebuild": "npm run clean",
     "build": "node index.js",
     "clean": "rm -rf dist",
-    "deploy": "ft-graphics-deploy",
+    "deploy": "g-deploy",
     "test": "echo \" No tests specified :( \"",
     "build:dotenv": "node --require dotenv/config index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@financial-times/g-deploy": "^3.0.8",
     "array-equal": "^1.0.0",
     "d3": "^4.9.1",
     "dotenv": "^4.0.0",
-    "ft-graphics-deploy": "^2.1.0",
     "g-chartframe": "^5.1.6",
     "g-ukpoliticalparties": "^0.1.0",
     "jsdom": "^11.0.0"

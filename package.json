@@ -11,6 +11,9 @@
     "test": "echo \" No tests specified :( \"",
     "build:dotenv": "node --require dotenv/config index.js"
   },
+  "engines": {
+    "node": ">10",
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
